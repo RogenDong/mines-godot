@@ -1,0 +1,15 @@
+[configuration]
+entry_symbol = "gdext_rust_init"
+compatibility_minimum = 4.1
+
+[libraries]
+linux.debug.x86_64 = "res://rsext/target/debug/librsext.so"
+linux.release.x86_64 = "res://rsext/target/release/librsext.so"
+windows.debug.x86_64 = "res://rsext/target/debug/rsext.dll"
+windows.release.x86_64 = "res://rsext/target/release/rsext.dll"
+macos.debug = "res://rsext/target/debug/rsext.dylib"
+macos.release = "res://rsext/target/release/rsext.dylib"
+macos.debug.arm64 = "res://rsext/target/debug/rsext.dylib"
+macos.release.arm64 = "res://rsext/target/release/rsext.dylib"
+android.debug.arm64 = "res://rsext/target/aarch64-linux-android/debug/librsext.so"
+android.release.x86_64 = "res://rsext/target/aarch64-linux-android/release/librsext.so"

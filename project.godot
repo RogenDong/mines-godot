@@ -11,10 +11,22 @@ config_version=5
 [application]
 
 config/name="tsgdrs"
-run/main_scene="res://main_ui.tscn"
+config/tags=PackedStringArray("android", "demo", "rust")
+run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://art/icon.svg"
+
+[display]
+
+window/size/viewport_width=450
+window/size/viewport_height=800
+window/size/window_width_override=450
+window/size/window_height_override=900
+window/energy_saving/keep_screen_on=false
+window/stretch/mode="canvas_items"
+window/handheld/orientation=1
 
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

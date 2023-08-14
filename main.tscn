@@ -1,0 +1,87 @@
+[gd_scene load_steps=2 format=3 uid="uid://hrhn2dree3oq"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_bw1nr"]
+
+[node name="Main" type="Main"]
+script = ExtResource("1_bw1nr")
+
+[node name="StartTimer" type="Timer" parent="."]
+
+[node name="TimeLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(160, 45)
+offset_right = 160.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 30
+text = "time: 000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Container" type="MarginContainer" parent="."]
+clip_contents = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 10
+
+[node name="MineGrid" type="GridContainer" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+
+[node name="BtnGroup" type="VBoxContainer" parent="." groups=["start_btn"]]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = -102.5
+offset_right = 84.0
+offset_bottom = 102.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="EasyBtn" type="Button" parent="BtnGroup" groups=["start_btn"]]
+custom_minimum_size = Vector2(168, 63)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "easy"
+
+[node name="MediBtn" type="Button" parent="BtnGroup" groups=["start_btn"]]
+custom_minimum_size = Vector2(168, 63)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "medium"
+
+[node name="HardBtn" type="Button" parent="BtnGroup" groups=["start_btn"]]
+custom_minimum_size = Vector2(168, 63)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "hard"
+
+[node name="NewGameBtn" type="Button" parent="." groups=["start_btn"]]
+custom_minimum_size = Vector2(104, 45)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -106.0
+offset_top = 1.0
+offset_right = -2.0
+offset_bottom = 51.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 30
+text = "new"
+
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="pressed" from="BtnGroup/EasyBtn" to="." method="_on_click_start_btn" binds= [0]]
+[connection signal="pressed" from="BtnGroup/MediBtn" to="." method="_on_click_start_btn" binds= [1]]
+[connection signal="pressed" from="BtnGroup/HardBtn" to="." method="_on_click_start_btn" binds= [2]]
+[connection signal="pressed" from="NewGameBtn" to="." method="_on_new_game_btn_pressed"]

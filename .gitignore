@@ -20,8 +20,9 @@ gdout
 # This project: input JSONs and code generation
 gen
 
-# Temporary tweaks, remove later
-/script
-*.bat
-config.toml
-exp.rs
+# android source, output
+/android
+/.out
+
+# rust output
+/target

@@ -1,14 +1,8 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
+use godot::prelude::*;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+pub mod cell;
+pub mod main_scen;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
+struct TsGdRs;
+#[gdextension]
+unsafe impl ExtensionLibrary for TsGdRs {}

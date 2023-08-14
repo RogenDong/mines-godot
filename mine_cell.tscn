@@ -1,0 +1,36 @@
+[gd_scene load_steps=13 format=3 uid="uid://ch0xgaqbi07du"]
+
+[ext_resource type="StyleBox" uid="uid://8jblfrybbnu4" path="res://style/cell_style_w1.tres" id="1_3fjaa"]
+[ext_resource type="Script" path="res://scripts/cell.gd" id="1_14fba"]
+[ext_resource type="StyleBox" uid="uid://cgqnummny2pe" path="res://style/cell_style_w2.tres" id="3_v05pf"]
+[ext_resource type="StyleBox" uid="uid://d1smc3gkd0bng" path="res://style/cell_style_w3.tres" id="4_f8osy"]
+[ext_resource type="StyleBox" uid="uid://c04dotg2wh6b5" path="res://style/cell_style_w4.tres" id="5_0tt46"]
+[ext_resource type="StyleBox" uid="uid://bitn7v050qgxo" path="res://style/cell_style_w5.tres" id="6_osm1n"]
+[ext_resource type="StyleBox" uid="uid://cf5ec23liwhrq" path="res://style/cell_style_w6.tres" id="7_405fb"]
+[ext_resource type="StyleBox" uid="uid://ovikhdfyufg5" path="res://style/cell_style_w7.tres" id="8_07ajg"]
+[ext_resource type="StyleBox" uid="uid://dgh7q8fbnd1kr" path="res://style/cell_style_w8.tres" id="9_op7dn"]
+[ext_resource type="StyleBox" uid="uid://br831u72fpqg4" path="res://style/cell_style_empty.tres" id="10_wxmvi"]
+[ext_resource type="StyleBox" uid="uid://bud6rl0kgiowb" path="res://style/cell_style_unknow.tres" id="11_mspyx"]
+[ext_resource type="StyleBox" uid="uid://c65hefxwyibwy" path="res://style/cell_style_mine.tres" id="11_x638d"]
+
+[node name="Cell" type="MineCell" groups=["cells"]]
+offset_right = 2.0
+offset_bottom = 2.0
+script = ExtResource("1_14fba")
+style_w1 = ExtResource("1_3fjaa")
+style_w2 = ExtResource("3_v05pf")
+style_w3 = ExtResource("4_f8osy")
+style_w4 = ExtResource("5_0tt46")
+style_w5 = ExtResource("6_osm1n")
+style_w6 = ExtResource("7_405fb")
+style_w7 = ExtResource("8_07ajg")
+style_w8 = ExtResource("9_op7dn")
+style_mine = ExtResource("11_x638d")
+style_empty = ExtResource("10_wxmvi")
+style_unknow = ExtResource("11_mspyx")
+
+[node name="DoubleClickTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="timeout" from="DoubleClickTimer" to="." method="_on_db_click_timer_timeout"]
