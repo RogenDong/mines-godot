@@ -38,6 +38,7 @@ func on_switch_flag(c: Cell):
 	self.switch_flag(c.x, c.y)
 	c.switch_flag()
 	c.set_style_not_open()
+	c.add_to_group("flagged")
 
 
 func on_open_cell(c: Cell):
@@ -104,7 +105,7 @@ func on_first_open(sx: int, sy: int):
 			if cell.is_mine():
 				cell.add_to_group("mines")
 	on_open_area(sx, sy)
-	get_tree().call_group("mines", "on_click_1")
+#	get_tree().call_group("mines", "on_click_1")
 	$StartTimer.start()
 
 
@@ -146,6 +147,7 @@ func reset_map(difficulty):
 ### HUD
 func end_game():
 	ended = true
+	get_tree().call_group("flagged", "set_style_wrong_flag")
 	get_tree().call_group("mines", "set_style_mines")
 	$NewGameBtn.show()
 	$StartTimer.stop()

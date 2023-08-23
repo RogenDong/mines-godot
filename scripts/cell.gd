@@ -33,6 +33,11 @@ func set_style_mines():
 		self.text = "🌞"
 
 
+func set_style_wrong_flag():
+	if !self.is_mine():
+		add_theme_stylebox_override("normal", style_w8)
+
+
 func set_style_not_open():
 	if self.is_flagged():
 		self.text = "🚩"
