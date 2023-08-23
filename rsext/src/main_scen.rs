@@ -96,6 +96,19 @@ impl Main {
     fn is_mine(&self, x: u8, y: u8) -> bool {
         self.mines.get(x, y).is_mine()
     }
+
+    #[func]
+    fn is_clear(&self) -> bool {
+        for y in 0..self.mines.height {
+            for x in 0..self.mines.width {
+                let m = self.mines.get(x, y);
+                if !m.is_open() && !m.is_mine() {
+                    return false;
+                }
+            }
+        }
+        true
+    }
 }
 
 #[godot_api]

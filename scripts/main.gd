@@ -22,12 +22,13 @@ const DIFF = [
 ]
 
 var cell_scen = preload("res://mine_cell.tscn")
-var time := 0
-var first_open := true
-var w := 0
-var h := 0
+var time = 0
+var first_open = true
+var w = 0
+var h = 0
 var cell_map = [[]]
 var ended = false
+var game_pause = false
 
 
 func on_switch_flag(c: Cell):
@@ -46,8 +47,9 @@ func on_open_cell(c: Cell):
 	elif c.get_warn() < 1:
 		on_open_around(c)
 	else:
+		self.open(c.x, c.y)
 		c.on_open()
-		if c.is_mine():
+		if c.is_mine() || self.is_clear():
 			end_game()
 
 
@@ -86,8 +88,8 @@ func open_cells(ls):
 			continue
 		self.open(p.x, p.y)
 		cell.on_open()
-		_mine = _mine || self.is_mine(p.x, p.y)
-	if _mine:
+		_mine = _mine || cell.is_mine()
+	if _mine || self.is_clear():
 		end_game()
 
 
@@ -102,6 +104,7 @@ func on_first_open(sx: int, sy: int):
 			if cell.is_mine():
 				cell.add_to_group("mines")
 	on_open_area(sx, sy)
+	get_tree().call_group("mines", "on_click_1")
 	$StartTimer.start()
 
 
@@ -153,12 +156,21 @@ func _on_click_start_btn(difficulty):
 	first_open = true
 	$BtnGroup.hide()
 	$Container.show()
+	$NewGameBtn.show()
 	reset_map(difficulty)
 
 
 func _on_new_game_btn_pressed():
-	$Container.hide()
-	$BtnGroup.show()
+	if self.game_pause:
+		$StartTimer.start()
+		$Container.show()
+		$BtnGroup.hide()
+	else:
+		$StartTimer.stop()
+		$Container.hide()
+		$BtnGroup.show()
+	if !self.first_open:
+		self.game_pause = !self.game_pause
 
 
 func _on_start_timer_timeout():

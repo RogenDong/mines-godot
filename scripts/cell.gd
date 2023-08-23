@@ -29,7 +29,8 @@ func on_open():
 
 func set_style_mines():
 	add_theme_stylebox_override("normal", style_mine)
-	self.text = "🌞"
+	if !self.is_flagged():
+		self.text = "🌞"
 
 
 func set_style_not_open():
